@@ -15,6 +15,6 @@ file(GLOB_RECURSE SRCS
     RELATIVE_PATH
 )
 
-add_executable(out ${nQueen_SRCS})
+add_executable(out ${SRCS})
 
 target_include_directories(out PUBLIC ${INCLUDE_DIR})
