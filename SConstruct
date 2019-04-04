@@ -1,6 +1,12 @@
 import fnmatch
 import os
 
+progName = "out"
+srcDir = "src"
+includeDir = ["include"]
+buildDir = "build"
+binDir = "bin"
+
 def RecursiveGlob(pathname, pattern):
     matches = []
     for root, dirnames, filenames in os.walk(pathname):
@@ -11,14 +17,14 @@ def RecursiveGlob(pathname, pattern):
             matches.append(relPath)
     return matches
 
-env = Environment(CPPPATH = "#include")
+env = Environment(CPPPATH = includeDir)
 
-env.VariantDir(variant_dir = "#build/", src_dir = "#src/", duplicate = 0)
+env.VariantDir(variant_dir = buildDir, src_dir = srcDir, duplicate = 0)
 
-srcs = RecursiveGlob("src", "*.cpp")
+srcs = RecursiveGlob(srcDir, "*.cpp")
 
-print(["build/" + f[4:] + "\n" for f in srcs])
+print([buildDir + "/" + f[4:] + "\n" for f in srcs])
 
-var_srcs = ["#build/" + f[4:] for f in srcs]
+var_srcs = [buildDir + "/" + f[4:] for f in srcs]
 
-env.Program("#bin/nQueen", var_srcs)
+env.Program(binDir + "/"  + progName, var_srcs)
