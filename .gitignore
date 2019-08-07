@@ -10,3 +10,5 @@ CTestTestfile.cmake
 build/
 bin/
 *.o
+.vscode/
+.dir-locals.el
